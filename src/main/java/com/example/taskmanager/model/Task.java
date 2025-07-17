@@ -1,9 +1,18 @@
 package com.example.taskmanager.model;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+
 public class Task {
     private Long id;
+
+    @NotBlank(message = "Title must not be blank")
+    @Size(min = 3, max = 50, message = "Title must be between 3 and 50 characters")
     private String title;
+
+    @Size(max = 200, message = "Description must not exceed 200 characters")
     private String description;
+
     private boolean completed;
 
     public Task(){} // Needed for Spring to deserialize JSON
